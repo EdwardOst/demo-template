@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"	
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:prop="http://camel.apache.org/schema/placeholder"
+       xmlns:cxfcamel="http://cxf.apache.org/transports/camel"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws
+			http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util.xsd
+		http://activemq.apache.org/schema/core http://activemq.org/config/1.0/1.0.xsd
+		http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd 
+		http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+                http://cxf.apache.org/transports/camel http://cxf.apache.org/transports/camel.xsd
+         ">
+
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    
+    <!-- Logging Interceptor -->
+    <bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+    <bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+
+    <!-- Stand-alone CXF endpoint instance -->
+    <cxf:cxfEndpoint id="helloWorldService"
+                     address="{{helloWorldEndpoint.service.path}}"
+                     serviceClass="com.talend.se.demo.helloworld.HelloWorld">
+        <cxf:inInterceptors>
+            <ref bean="loggingInInterceptor" />
+        </cxf:inInterceptors>
+        <cxf:outInterceptors>
+            <ref bean="loggingOutInterceptor" />
+        </cxf:outInterceptors>
+        <!-- SAM: attach SAM feature to endpoint <cxf:features> <ref bean="eventFeature"/> </cxf:features> -->
+        <!-- SL: attach SL feature to endpoint <jaxws:features> <bean class="org.talend.esb.servicelocator.cxf.LocatorFeature"/></jaxws:features> -->
+    </cxf:cxfEndpoint>
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <camel:propertyPlaceholder id="properties" location="ref:propertySources"/>
+        <!-- enable package scanning for annotations -->
+        <!-- package>com.talend.demo.store.service</package -->
+		
+        <!-- Global Error Handler -->
+        <!-- camel:errorHandler id="globalErrorHandler" type="DeadLetterChannel" deadLetterUri="direct:errorEndpoint"></camel:errorHandler -->
+		
+        <!-- Use Camel endpoints to allow property driven uri substitution -->
+        <!-- camel:endpoint id="customerRepoSource" uri="{{customerRepoSource}}" / -->
+
+        <camel:endpoint id="helloWorldServiceEndpoint" uri="cxf:bean:helloWorldService" />
+        <camel:endpoint id="helloWorldImplEndpoint" uri="bean:helloWorld" />
+            
+        <!-- host the HelloWorld web service -->
+        <route id="exposeHelloWorldServiceRoute">
+            <from ref="helloWorldServiceEndpoint" />
+            <setHeader headerName="CamelBeanMethodName">
+                <simple>$simple{header.operationName}</simple>
+            </setHeader>
+            <to uri="log:helloWorldRequestReceived"/>
+            <to ref="helloWorldImplEndpoint"/>
+        </route>
+        
+        <route id="testPropertyPlaceholders">
+            <from uri="timer:testPropertyPlaceholders?repeatCount=3&amp;period=1000" />
+            <setBody>
+                <simple>test message = ${properties:localMessage1}</simple>
+            </setBody>
+            <to uri="log:testPropertyPlaceholders"/>
+        </route>
+        
+    </camelContext>
+		
+
+</beans>
