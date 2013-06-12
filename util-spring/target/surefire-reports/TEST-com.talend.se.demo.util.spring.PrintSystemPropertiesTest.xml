@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.talend.se.demo.util.spring.PrintSystemPropertiesTest" time="0.782" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="com.talend.se.demo.util.spring.PrintSystemPropertiesTest" time="0.796" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\java\jdk1.7.0_13\jre\bin"/>
@@ -59,5 +59,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testLoadingContainer" classname="com.talend.se.demo.util.spring.PrintSystemPropertiesTest" time="0.782"/>
+  <testcase name="testLoadingContainer" classname="com.talend.se.demo.util.spring.PrintSystemPropertiesTest" time="0.796"/>
 </testsuite>
