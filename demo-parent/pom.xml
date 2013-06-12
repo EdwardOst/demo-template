@@ -31,12 +31,12 @@
 
     <properties>
          <!-- local nexus repo -->
-        <!-- distributionManagement.repository.url>http://localhost:8081/nexus/content/repositories/releases/</distributionManagement.repository.url>
-        <distributionManagement.snapshotRepository.url>http://localhost:8081/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url -->
+        <distributionManagement.repository.url>http://localhost:8081/nexus/content/repositories/releases/</distributionManagement.repository.url>
+        <distributionManagement.snapshotRepository.url>http://localhost:8081/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url>
 
          <!-- ec2 nexus repo -->
-        <distributionManagement.repository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/releases/</distributionManagement.repository.url>
-        <distributionManagement.snapshotRepository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url>
+        <!-- distributionManagement.repository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/releases/</distributionManagement.repository.url>
+        <distributionManagement.snapshotRepository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url -->
 
         <properties-maven-plugin.version>1.0-alpha-2</properties-maven-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
