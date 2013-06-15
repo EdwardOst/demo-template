@@ -57,10 +57,7 @@
         <!-- default spring container xml config file -->
         <containerConfig>container.xml</containerConfig>
         
-        <vista.osgi.imports>
-            org.slf4j.*;version="[1.6,2)"
-        </vista.osgi.imports>
-        <vista.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</vista.osgi.import.default.version>    
+        <osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</osgi.import.default.version>    
     </properties>
 
     <build>
@@ -604,7 +601,7 @@
                                     {maven-resources},
                                     target/resources
                                 </Include-Resource>
-                                <_versionpolicy>${vista.osgi.import.default.version}</_versionpolicy>
+                                <_versionpolicy>${osgi.import.default.version}</_versionpolicy>
                             </instructions>
                             <supportedProjectTypes>
                                 <supportedProjectType>jar</supportedProjectType>
@@ -673,6 +670,25 @@
                 </dependency>
             </dependencies>
         </profile>    
+
+        <!-- remember that when invoking profiles via the -P option, all 
+        profiles must be specified.  So these profiles are mostly for scripted
+        deployments in which all profiles have been identified in advance. -->
+        <profile>
+            <id>localTarget</id>
+            <properties>
+                <distributionManagement.repository.url>http://localhost:8081/nexus/content/repositories/releases/</distributionManagement.repository.url>
+                <distributionManagement.snapshotRepository.url>http://localhost:8081/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>ec2Target</id>
+            <properties>
+                <distributionManagement.repository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/releases/</distributionManagement.repository.url>
+                <distributionManagement.snapshotRepository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url>
+            </properties>
+        </profile>
 
     </profiles>
 
