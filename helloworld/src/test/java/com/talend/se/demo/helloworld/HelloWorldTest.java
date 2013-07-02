@@ -9,11 +9,11 @@ import org.apache.camel.test.spring.MockEndpoints;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
 
 @RunWith(CamelSpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -30,10 +30,10 @@ public class HelloWorldTest {
     @Autowired
     private ApplicationContext springContext;
     
-    @Produce(uri = "direct:invokeHelloWorld", context="helloWorldTest")
+    @Produce(uri = "direct:helloWorldClient", context="helloWorldTest")
     private ProducerTemplate start;
 
-    @EndpointInject(uri="mock:log:helloWorldRequest", context="helloWorldTest")
+    @EndpointInject(uri="mock:log:helloWorld-request", context="helloWorldTest")
     private MockEndpoint requestEndpoint;
 
     @EndpointInject(uri="mock:result", context="helloWorldTest")
@@ -45,13 +45,13 @@ public class HelloWorldTest {
     @Test
     public void testLoadContainer() {
         System.out.println("testLoadContainer");
-        String container = System.getProperty("container", "spring");
+        String container = System.getProperty("container");
         
         final String expectedTestContainerProperty = "containerPropertyValue" + "." + container + ".test";
         String testContainerProperty = springContext.getBean("testContainerProperty", String.class);
         assertEquals("testContainerProperty failed: ", expectedTestContainerProperty, testContainerProperty);
 
-        final String expectedAppPropertyValue = "appPropertyValue";
+        final String expectedAppPropertyValue = "appPropertyValueTest";
         String testAppProperty = springContext.getBean("testAppProperty", String.class);
         assertEquals("testAppProperty failed: ", expectedAppPropertyValue, testAppProperty);
         try {

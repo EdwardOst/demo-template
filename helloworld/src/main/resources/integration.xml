@@ -56,17 +56,17 @@
         <!-- Use Camel endpoints to allow property driven uri substitution -->
         <!-- camel:endpoint id="customerRepoSource" uri="{{customerRepoSource}}" / -->
 
-        <camel:endpoint id="helloWorldServiceEndpoint" uri="cxf:bean:helloWorldService" />
-        <camel:endpoint id="helloWorldImplEndpoint" uri="bean:helloWorld" />
+        <camel:endpoint id="helloWorld-endpoint" uri="cxf:bean:helloWorldService" />
+        <camel:endpoint id="helloWorld-bean" uri="bean:helloWorld" />
             
         <!-- host the HelloWorld web service -->
-        <route id="exposeHelloWorldServiceRoute">
-            <from ref="helloWorldServiceEndpoint" />
+        <route id="helloWorld-server">
+            <from ref="helloWorld-endpoint" />
             <setHeader headerName="CamelBeanMethodName">
                 <simple>$simple{header.operationName}</simple>
             </setHeader>
-            <to uri="log:helloWorldRequestReceived"/>
-            <to ref="helloWorldImplEndpoint"/>
+            <to uri="log:helloWorld-requestReceived"/>
+            <to ref="helloWorld-bean"/>
         </route>
         
         <route id="testPropertyPlaceholders">

@@ -13,9 +13,9 @@
 
     <bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" />
     <util:properties id="defaultProperties">
-        <prop key="localMessage1">defaultValue1</prop>
-        <prop key="localMessage2">defaultValue2</prop>
-        <prop key="messagePostfix"> -- xml message postfix</prop>
+        <prop key="localMessage1">springDefaultValue1</prop>
+        <prop key="localMessage2">springDefaultValue2</prop>
+        <prop key="messagePostfix"> -- default spring xml message postfix</prop>
     </util:properties> 
 
     <!-- load just system properties to allow dynamic specification of properties file via local.config System property -->

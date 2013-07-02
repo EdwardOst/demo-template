@@ -21,8 +21,8 @@
 
     <bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" />
     <util:properties id="defaultProperties">
-        <prop key="localMessage1">defaultValue1</prop>
-        <prop key="localMessage2">defaultValue2</prop>
+        <prop key="localMessage1">springDefaultValue1</prop>
+        <prop key="localMessage2">springDefaultValue2</prop>
     </util:properties> 
 
     <!-- load just system properties to allow dynamic specification of properties file via local.config System property -->
@@ -34,7 +34,8 @@
     </bean>
 
     <osgix:cm-properties id="osgi-cm-properties" persistent-id="com.talend.se.demo.helloworld">
-        <prop key="cmMessage1">defaultCmMessageInXml</prop>
+        <prop key="cmMessage1">default karaf xml message </prop>
+        <prop key="messagePostfix"> -- default karaf xml message postfix</prop>
     </osgix:cm-properties>
 
     <bean id="optionalProperty" class="org.springframework.beans.factory.config.PropertiesFactoryBean" abstract="true">
@@ -54,15 +55,15 @@
                 <bean parent="optionalProperty">
                     <property name="location" value="classpath:app.test.properties"/>
                 </bean>
+                <ref local="osgi-cm-properties"/>
                 <!-- local configuration by developer -->
                 <bean parent="optionalProperty">
                     <property name="location" value="##local.config##"/>
                 </bean>
-                <!-- externalized configuration in runtime environment -->
+                <!-- externalized configuration in runtime environment by operations -->
                 <bean parent="optionalProperty">
                     <property name="location" value="##external.config##"/>
                 </bean>
-                <ref local="osgi-cm-properties"/>
             </util:list>
         </property>
     </bean>
@@ -90,7 +91,6 @@
                 <entry key="container" value="{{container}}"/>
                 <entry key="containerConfig" value="{{containerConfig}}"/>
                 <entry key="etcConfigVar" value="{{etcConfigVar}}"/>
-                <entry key="localMessage" value="{{localMessage}}"/>
                 <entry key="appTestProperty" value="{{appTestProperty}}"/>
                 <entry key="containerTestProperty" value="{{containerTestProperty}}"/>
                 <entry key="helloWorldEndpoint.service.path" value="{{helloWorldEndpoint.service.path}}"/>

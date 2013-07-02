@@ -99,6 +99,36 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/cxf</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/cxf</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-java2ws-plugin</artifactId>
                 <executions>
@@ -109,7 +139,7 @@
                         <phase>process-classes</phase>
                         <configuration>
                             <className>com.talend.se.demo.helloworld.HelloWorld</className>
-                            <outputFile>${project.build.directory}/generated-resources/wsdl/HelloWorld.wsdl</outputFile>
+                            <outputFile>${project.build.directory}/generated-resources/cxf/wsdl/HelloWorld.wsdl</outputFile>
                             <frontend>jaxws</frontend>
                             <genWsdl>true</genWsdl>
                             <genWrapperbean>true</genWrapperbean>
@@ -118,7 +148,7 @@
                             <verbose>true</verbose>
                             <version>true</version>
                             <attachWsdl>false</attachWsdl>
-                            <argline>-createxsdimports -s ${project.build.directory}/generated-sources</argline>
+                            <argline>-createxsdimports -s ${project.build.directory}/generated-sources/cxf</argline>
                         </configuration>
                     </execution>
                 </executions>

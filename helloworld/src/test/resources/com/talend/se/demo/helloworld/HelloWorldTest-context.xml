@@ -25,12 +25,12 @@
 
     
     <camelContext id="helloWorldTest" xmlns="http://camel.apache.org/schema/spring">
-        <camel:endpoint id="helloWorldServiceClient" uri="cxf:bean:helloWorldService" />
+        <camel:endpoint id="helloWorld-test-endpoint" uri="cxf:bean:helloWorldService" />
                 		
-        <route id="invokeHelloWorldRoute">
-            <from uri="direct:invokeHelloWorld"/>
-            <to uri="log:helloWorldRequest"/>
-            <to ref="helloWorldServiceClient" />
+        <route id="helloWorld-client">
+            <from uri="direct:helloWorldClient"/>
+            <to uri="log:helloWorld-request"/>
+            <to ref="helloWorld-test-endpoint" />
             <to uri="mock:result"/>
         </route>
 

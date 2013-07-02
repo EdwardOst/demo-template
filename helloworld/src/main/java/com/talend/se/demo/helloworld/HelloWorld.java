@@ -12,9 +12,9 @@ import javax.xml.ws.ResponseWrapper;
 public interface HelloWorld {
 
 	@WebMethod(operationName = "greet", action = "urn:Greet")
-	@WebResult(targetNamespace="http://service.helloworld.simple.demo.talend.com/")
-	@RequestWrapper(className = "com.talend.se.demo.helloworld.service.Greet", localName = "greet", targetNamespace = "http://service.helloworld.demo.se.talend.com/")
-	@ResponseWrapper(className = "com.talend.se.demo.helloworld.service.GreetResponse", localName = "greetResponse", targetNamespace = "http://service.helloworld.demo.se.talend.com/")
+	@WebResult(targetNamespace="http://helloworld.service.demo.se.talend.com/")
+	@RequestWrapper(className = "com.talend.se.demo.service.helloworld.Greet", localName = "greet", targetNamespace = "http://helloworld.service.demo.se.talend.com/")
+	@ResponseWrapper(className = "com.talend.se.demo.service.helloworld.GreetResponse", localName = "greetResponse", targetNamespace = "http://helloworld.service.demo.se.talend.com/")
 	public String greet(@WebParam(name = "name") String name);
 
 }
