@@ -230,20 +230,8 @@
                 <configuration>
                     <systemProperties>
                         <systemProperty>
-                            <key>container</key>
-                            <value>spring</value>
-                        </systemProperty>
-                        <systemProperty>
                             <key>containerConfig</key>
                             <value>container.xml</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <key>app-properties</key>
-                            <value>${app-properties}</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <key>container-properties</key>
-                            <value>springContainer.properties</value>
                         </systemProperty>
                     </systemProperties>
                 </configuration>
@@ -251,12 +239,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <!-- unit tests are always done in spring container -->
                 <configuration>
+                    <!-- unit tests are always us the spring config -->
                     <systemPropertyVariables>
-                        <container>${container}</container>
-                        <app-properties>${app-properties}</app-properties>
-                        <container-properties>${container-properties}</container-properties>
+			<container>${container}</container>
                         <containerConfig>container.xml</containerConfig>
                     </systemPropertyVariables>
                 </configuration>
