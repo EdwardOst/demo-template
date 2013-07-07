@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="demo-soapui" soapui-version="4.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HelloWorldServiceSoapBinding" type="wsdl" bindingName="{http://helloworld.demo.se.talend.com/}HelloWorldServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/helloworld?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/helloworld?wsdl"><con:part><con:url>http://localhost:8080/services/helloworld?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HelloWorldService" targetNamespace="http://helloworld.demo.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://helloworld.demo.se.talend.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://service.helloworld.demo.se.talend.com/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://service.helloworld.simple.demo.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="return" type="xs:string"/>
+    </xs:schema>
+    <xs:schema targetNamespace="http://service.helloworld.demo.se.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.helloworld.demo.se.talend.com/" xmlns:ns1="http://service.helloworld.simple.demo.talend.com/">
+      <xs:import namespace="http://service.helloworld.simple.demo.talend.com/"/>
+      <xs:element name="greet" type="tns:greet"/>
+      <xs:element name="greetResponse" type="tns:greetResponse"/>
+      <xs:complexType name="greet">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="greetResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns1:return"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="greet">
+    <wsdl:part element="ns1:greet" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="greetResponse">
+    <wsdl:part element="ns1:greetResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorld">
+    <wsdl:operation name="greet">
+      <wsdl:input message="tns:greet" name="greet"></wsdl:input>
+      <wsdl:output message="tns:greetResponse" name="greetResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldServiceSoapBinding" type="tns:HelloWorld">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="greet">
+      <soap:operation soapAction="urn:Greet" style="document"/>
+      <wsdl:input name="greet">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="greetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldService">
+    <wsdl:port binding="tns:HelloWorldServiceSoapBinding" name="HelloWorldPort">
+      <soap:address location="http://localhost:8080/services/helloworld"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/helloworld/services/helloworld</con:endpoint><con:endpoint>http://localhost:8070/helloworld</con:endpoint><con:endpoint>http://localhost:8080/services/helloworld</con:endpoint><con:endpoint>http://localhost:9091/helloworld</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:Greet" name="greet" bindingOperationName="greet" type="Request-Response" outputName="greetResponse" inputName="greet" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9091/helloworld</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.helloworld.demo.se.talend.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:greet>
+         <!--Optional:-->
+         <name>Ed Ost4</name>
+      </ser:greet>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:Greet"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PriceQuoteServiceSoapBinding" type="wsdl" bindingName="{http://pricequote.demo.se.talend.com/}PriceQuoteServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:6090/PriceQuotePort?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:6090/PriceQuotePort?wsdl"><con:part><con:url>http://localhost:6090/PriceQuotePort?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PriceQuoteService" targetNamespace="http://pricequote.demo.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pricequote.demo.se.talend.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://pricequote.demo.se.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getUnitPrice" type="tns:getUnitPrice"/>
+      <xs:element name="getUnitPriceResponse" type="tns:getUnitPriceResponse"/>
+      <xs:complexType name="getUnitPrice">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="request" type="tns:priceQuoteRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="priceQuoteRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="itemCategory" type="xs:string"/>
+          <xs:element minOccurs="0" name="itemName" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUnitPriceResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getUnitPrice">
+    <wsdl:part element="tns:getUnitPrice" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnitPriceResponse">
+    <wsdl:part element="tns:getUnitPriceResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PriceQuote">
+    <wsdl:operation name="getUnitPrice">
+      <wsdl:input message="tns:getUnitPrice" name="getUnitPrice"></wsdl:input>
+      <wsdl:output message="tns:getUnitPriceResponse" name="getUnitPriceResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PriceQuoteServiceSoapBinding" type="tns:PriceQuote">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUnitPrice">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUnitPrice">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUnitPriceResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PriceQuoteService">
+    <wsdl:port binding="tns:PriceQuoteServiceSoapBinding" name="PriceQuotePort">
+      <soap:address location="http://localhost:6090/PriceQuotePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:6090/PriceQuotePort</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="getUnitPrice" bindingOperationName="getUnitPrice" type="Request-Response" outputName="getUnitPriceResponse" inputName="getUnitPrice" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:6090/PriceQuotePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pric="http://pricequote.demo.se.talend.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pric:getUnitPrice>
+         <!--Optional:-->
+         <request>
+            <!--Optional:-->
+            <itemCategory>os</itemCategory>
+            <!--Optional:-->
+            <itemName>linux</itemName>
+         </request>
+      </pric:getUnitPrice>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pricequote.demo.se.talend.com/PriceQuote/getUnitPrice"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BatonServiceSoapBinding" type="wsdl" bindingName="{http://service.vubiquity.se.talend.com/}BatonServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8090/baton?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8090/baton?wsdl"><con:part><con:url>http://localhost:8090/baton?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="BatonService" targetNamespace="http://service.vubiquity.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.vubiquity.se.talend.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://baton.service.vubiquity.se.talend.com/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://baton.service.vubiquity.se.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://baton.service.vubiquity.se.talend.com/">
+      <xs:element name="verify" type="tns:verify"/>
+      <xs:element name="verifyResponse" type="tns:verifyResponse"/>
+      <xs:complexType name="verify">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="media" type="xs:string"/>
+          <xs:element minOccurs="0" name="resultUrl" type="xs:string"/>
+          <xs:element minOccurs="0" name="callbackUrl" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="verifyResponse">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="verify">
+    <wsdl:part element="ns1:verify" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyResponse">
+    <wsdl:part element="ns1:verifyResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Baton">
+    <wsdl:operation name="verify">
+      <wsdl:input message="tns:verify" name="verify"></wsdl:input>
+      <wsdl:output message="tns:verifyResponse" name="verifyResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BatonServiceSoapBinding" type="tns:Baton">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="verify">
+      <soap:operation soapAction="urn:verify" style="document"/>
+      <wsdl:input name="verify">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verifyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BatonService">
+    <wsdl:port binding="tns:BatonServiceSoapBinding" name="BatonPort">
+      <soap:address location="http://localhost:8090/baton"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8090/baton</con:endpoint><con:endpoint>http://localhost:7090/baton</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:verify" name="verify" bindingOperationName="verify" type="Request-Response" outputName="verifyResponse" inputName="verify" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7090/baton</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bat="http://baton.service.vubiquity.se.talend.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bat:verify>
+         <!--Optional:-->
+         <media>?</media>
+         <!--Optional:-->
+         <resultUrl>?</resultUrl>
+         <!--Optional:-->
+         <callbackUrl>?</callbackUrl>
+      </bat:verify>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:verify"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="EmployeeBinding" type="wsdl" bindingName="{http://www.talend.org/service/}EmployeeBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8091/services/Employee?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8091/services/Employee?wsdl"><con:part><con:url>http://localhost:8091/services/Employee?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Employee" targetNamespace="http://www.talend.org/service/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.talend.org/service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.talend.org/service/">
+      <xsd:element name="getEmployeeRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="empId" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getEmployeeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="employee" type="tns:employeeType"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="employeeType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="address1" type="xsd:string"/>
+          <xsd:element name="address2" type="xsd:string"/>
+          <xsd:element name="city" type="xsd:string"/>
+          <xsd:element name="postalCode" type="xsd:string"/>
+          <xsd:element name="country" type="xsd:string"/>
+          <xsd:element name="nationality" type="xsd:string"/>
+          <xsd:element name="dateOfBirth" type="xsd:string"/>
+          <xsd:element name="type" type="xsd:string"/>
+          <xsd:element name="email" type="xsd:string"/>
+          <xsd:element name="phone" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getEmployeeFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="fault" type="tns:faultType"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="faultType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="type" type="xsd:string"/>
+          <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getEmployeeResponse">
+    <wsdl:part element="tns:getEmployeeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeRequest">
+    <wsdl:part element="tns:getEmployeeRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeFault">
+    <wsdl:part element="tns:getEmployeeFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="EmployeePortType">
+    <wsdl:operation name="getEmployee">
+      <wsdl:input message="tns:getEmployeeRequest"></wsdl:input>
+      <wsdl:output message="tns:getEmployeeResponse"></wsdl:output>
+      <wsdl:fault message="tns:getEmployeeFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmployeeBinding" type="tns:EmployeePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getEmployee">
+      <soap:operation soapAction="http://www.talend.org/service/getEmployee"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Employee">
+    <wsdl:port binding="tns:EmployeeBinding" name="EmployeePort">
+      <soap:address location="http://localhost:8091/services/Employee"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8091/services/Employee</con:endpoint><con:endpoint>http://localhost:8095/services/Employee</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.talend.org/service/getEmployee" name="getEmployee" bindingOperationName="getEmployee" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8095/services/Employee</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.talend.org/service/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getEmployeeRequest>
+         <empId>0000000001</empId>
+      </ser:getEmployeeRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.talend.org/service/getEmployee"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="TravelServiceBinding" type="wsdl" bindingName="{http://www.talend.org/service/}TravelServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8092/services/TravelService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8092/services/TravelService?wsdl"><con:part><con:url>http://localhost:8092/services/TravelService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TravelService" targetNamespace="http://www.talend.org/service/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.talend.org/service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.talend.org/service/">
+      <xsd:element name="estimateTripCostRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="destination" type="xsd:string"></xsd:element>
+            <xsd:element name="departureDate" type="xsd:string"></xsd:element>
+            <xsd:element name="duration" type="xsd:int"></xsd:element>
+            <xsd:element name="flightRequired" type="xsd:string"></xsd:element>
+            <xsd:element name="hotelRequired" type="xsd:string"></xsd:element>
+            <xsd:element name="carRequired" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="estimateTripCostResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="estimatedCost" type="xsd:float"></xsd:element>
+            <xsd:element name="currency" type="xsd:string"></xsd:element>
+            <xsd:element name="notes" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="evaluateTripRisk">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="evaluateTripRiskResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getWeatherReport">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getWeatherReportResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="estimateTripCostFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="estimateTripCostFault" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="evaluateTripRiskFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="evaluateTripRiskFault" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getWeatherReportFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getWeatherReportFault" type="xsd:string"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="estimateTripCostResponse">
+    <wsdl:part element="tns:estimateTripCostResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="estimateTripCostRequest">
+    <wsdl:part element="tns:estimateTripCostRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evaluateTripRiskFault">
+    <wsdl:part element="tns:evaluateTripRiskFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evaluateTripRiskResponse">
+    <wsdl:part element="tns:evaluateTripRiskResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWeatherReportResponse">
+    <wsdl:part element="tns:getWeatherReportResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWeatherReportFault">
+    <wsdl:part element="tns:getWeatherReportFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getWeatherReportRequest">
+    <wsdl:part element="tns:getWeatherReport" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="estimateTripCostFault">
+    <wsdl:part element="tns:estimateTripCostFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evaluateTripRiskRequest">
+    <wsdl:part element="tns:evaluateTripRisk" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TravelServicePortType">
+    <wsdl:operation name="estimateTripCost">
+      <wsdl:input message="tns:estimateTripCostRequest"></wsdl:input>
+      <wsdl:output message="tns:estimateTripCostResponse"></wsdl:output>
+      <wsdl:fault message="tns:estimateTripCostFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="evaluateTripRisk">
+      <wsdl:input message="tns:evaluateTripRiskRequest"></wsdl:input>
+      <wsdl:output message="tns:evaluateTripRiskResponse"></wsdl:output>
+      <wsdl:fault message="tns:evaluateTripRiskFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getWeatherReport">
+      <wsdl:input message="tns:getWeatherReportRequest"></wsdl:input>
+      <wsdl:output message="tns:getWeatherReportResponse"></wsdl:output>
+      <wsdl:fault message="tns:getWeatherReportFault" name="fault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TravelServiceBinding" type="tns:TravelServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="estimateTripCost">
+      <soap:operation soapAction="http://www.talend.org/service/estimateTripCost"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="evaluateTripRisk">
+      <soap:operation soapAction="http://www.talend.org/service/evaluateTripRisk"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getWeatherReport">
+      <soap:operation soapAction="http://www.talend.org/service/getWeatherReport"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TravelService">
+    <wsdl:port binding="tns:TravelServiceBinding" name="TravelServicePort">
+      <soap:address location="http://localhost:8092/services/TravelService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8092/services/TravelService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.talend.org/service/estimateTripCost" name="estimateTripCost" bindingOperationName="estimateTripCost" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8092/services/TravelService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.talend.org/service/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:estimateTripCostRequest>
+         <destination>?</destination>
+         <departureDate>?</departureDate>
+         <duration>3</duration>
+         <flightRequired>Yes</flightRequired>
+         <hotelRequired>Yes</hotelRequired>
+         <carRequired>Yes</carRequired>
+      </ser:estimateTripCostRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.talend.org/service/estimateTripCost"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.talend.org/service/evaluateTripRisk" name="evaluateTripRisk" bindingOperationName="evaluateTripRisk" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8092/services/TravelService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.talend.org/service/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:evaluateTripRisk>
+         <in>?</in>
+      </ser:evaluateTripRisk>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.talend.org/service/evaluateTripRisk"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.talend.org/service/getWeatherReport" name="getWeatherReport" bindingOperationName="getWeatherReport" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8092/services/TravelService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://www.talend.org/service/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getWeatherReport>
+         <in>?</in>
+      </ser:getWeatherReport>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.talend.org/service/getWeatherReport"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
