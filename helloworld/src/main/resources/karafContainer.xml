@@ -19,6 +19,11 @@
                     http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd
     ">
 
+    <!-- service locator -->
+    <import resource="classpath:META-INF/tesb/locator/beans-osgi.xml" />    
+    <!-- service activity monitor -->
+    <import resource="classpath:META-INF/tesb/agent-osgi.xml"/>
+
     <bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" />
     <util:properties id="defaultProperties">
         <prop key="localMessage1">springDefaultValue1</prop>

@@ -41,8 +41,12 @@
         <cxf:outInterceptors>
             <ref bean="loggingOutInterceptor" />
         </cxf:outInterceptors>
-        <!-- SAM: attach SAM feature to endpoint <cxf:features> <ref bean="eventFeature"/> </cxf:features> -->
-        <!-- SL: attach SL feature to endpoint <jaxws:features> <bean class="org.talend.esb.servicelocator.cxf.LocatorFeature"/></jaxws:features> -->
+        <cxf:features> 
+            <!-- Service Locator -->
+            <bean class="org.talend.esb.servicelocator.cxf.LocatorFeature"/>
+            <!-- SAM -->
+            <ref bean="eventFeature"/>
+        </cxf:features>
     </cxf:cxfEndpoint>
 
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">

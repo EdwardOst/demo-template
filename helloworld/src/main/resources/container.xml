@@ -11,6 +11,16 @@
 		http://www.springframework.org/schema/util
 			http://www.springframework.org/schema/util/spring-util.xsd">
 
+    <!-- including these components will require a zookeeper server to be
+    running and a sam agent (usually running in the esb container) to be
+    running on the same machine in order to avoid ugly log messages about
+    failed connections.  But it will still work even without the zookeeper
+    and sam agents. -->
+    <!-- service locator -->
+    <import resource="classpath:META-INF/tesb/locator/beans.xml" />
+    <!-- service activity monitor -->
+    <import resource="classpath:META-INF/tesb/agent-context.xml" />
+
     <bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" />
     <util:properties id="defaultProperties">
         <prop key="localMessage1">springDefaultValue1</prop>
