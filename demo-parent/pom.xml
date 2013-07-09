@@ -25,11 +25,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <tesb.version>5.3.1</tesb.version>
-        <cxf.version>2.7.5</cxf.version>
-        <camel.version>2.10.4</camel.version>
+        <tesb.version>5.2.2</tesb.version>
+        <cxf.version>2.7.3</cxf.version>
+        <camel.version>2.10.2</camel.version>
         <activemq.version>5.7.0</activemq.version>
-        <karaf.version>2.3.1</karaf.version>
+        <karaf.version>2.2.9</karaf.version>
         
          <!-- local nexus repo -->
         <distributionManagement.repository.url>http://localhost:8081/nexus/content/repositories/releases/</distributionManagement.repository.url>
@@ -71,7 +71,6 @@
         <jetty-maven-plugin.version>${jetty.version}</jetty-maven-plugin.version>
         <tomcat-maven-plugin.version>2.1</tomcat-maven-plugin.version>
         
-
     </properties>
 
     <dependencyManagement>
