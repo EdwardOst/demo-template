@@ -20,7 +20,7 @@
     ">
 
     <!-- service locator -->
-    <import resource="classpath:META-INF/tesb/locator/beans-osgi.xml" />    
+    <import resource="classpath:META-INF/tesb/locator/beans-osgi.xml" />
     <!-- service activity monitor -->
     <import resource="classpath:META-INF/tesb/agent-osgi.xml"/>
 

@@ -35,6 +35,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
+
+        <!-- this order with camel-cxf coming before camel-core seems to be
+        important.  The woodstox-core-asl artifact  needs to be 4.2.  A
+        different version is referenced by camel-parent.  But I thought that
+        would have been handled by the order of precedence in my own 
+        DependencyManagement section. I guess not.  -->
+
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
