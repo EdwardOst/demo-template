@@ -6,13 +6,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <!-- parent>
-        <groupId>com.talend.se.platform</groupId>
-        <artifactId>tesb</artifactId>
-        <version>5.3.1-SNAPSHOT</version>
-        <relativePath>../../platform/talend/tesb/pom.xml</relativePath>
-    </parent -->
-
     <name>demo-parent</name>
     <description>Profiles shared by all Talend SE demos</description>
 
