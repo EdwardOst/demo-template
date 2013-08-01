@@ -26,11 +26,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Talend Apache ESB platform properties -->
-        <tesb.version>5.2.2</tesb.version>
-        <cxf.version>2.7.3</cxf.version>
-        <camel.version>2.10.2</camel.version>
+        <tesb.version>5.3.1</tesb.version>
+        <cxf.version>2.7.5</cxf.version>
+        <camel.version>2.10.4</camel.version>
         <activemq.version>5.7.0</activemq.version>
-        <karaf.version>2.2.9</karaf.version>
+        <karaf.version>2.3.1</karaf.version>
         
          <!-- local nexus repo -->
         <distributionManagement.repository.url>http://localhost:8081/nexus/content/repositories/releases/</distributionManagement.repository.url>
@@ -62,7 +62,7 @@
         <osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</osgi.import.default.version>    
 
         <!-- build plugin versions -->
-        <maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <felix.version>2.3.7</felix.version>
         <maven-bundle-plugin.version>2.3.7</maven-bundle-plugin.version>
         <maven-resources-plugin.version>2.6</maven-resources-plugin.version> 
