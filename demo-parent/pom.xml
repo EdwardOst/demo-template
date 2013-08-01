@@ -25,6 +25,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- Talend Apache ESB platform properties -->
         <tesb.version>5.2.2</tesb.version>
         <cxf.version>2.7.3</cxf.version>
         <camel.version>2.10.2</camel.version>
@@ -84,7 +85,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
     <build>
         <pluginManagement>
