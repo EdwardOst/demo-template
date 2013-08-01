@@ -26,8 +26,8 @@
 
     <bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" />
     <util:properties id="defaultProperties">
-        <prop key="localMessage1">springDefaultValue1</prop>
-        <prop key="localMessage2">springDefaultValue2</prop>
+        <prop key="localMessage1">karafDefaultValue1</prop>
+        <prop key="localMessage2">karafDefaultValue2</prop>
     </util:properties> 
 
     <!-- load just system properties to allow dynamic specification of properties file via local.config System property -->
@@ -40,7 +40,7 @@
 
     <osgix:cm-properties id="osgi-cm-properties" persistent-id="com.talend.se.demo.helloworld">
         <prop key="cmMessage1">default karaf xml message </prop>
-        <prop key="messagePostfix"> -- default karaf xml message postfix</prop>
+        <prop key="messagePostfix"> -- osgi:cm karaf xml message postfix</prop>
     </osgix:cm-properties>
 
     <bean id="optionalProperty" class="org.springframework.beans.factory.config.PropertiesFactoryBean" abstract="true">
