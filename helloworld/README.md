@@ -4,8 +4,8 @@ This simple example aims to demonstrate a basic ESB example using CXF and Camel.
 It deploys a basic web service that utilizes TESB infrastructure such as the
 Service Locator and Service Activity Monitor in a flexible virtual service 
 container which can run in any java environment.  It also demonstrates loose
-coupling to the TESB platform so that it is simple to upgrade (or downgrade)
-from one version of Talend to another.
+coupling to the TESB platform using the apache-platform maven projects so that
+it is simple to upgrade (or downgrade) from one version of Talend to another.
 
 Install and Deploy
 ------------------
@@ -15,7 +15,7 @@ To build
 
 To deploy
 
-    karaf> features:addurl mvn:com.talend.se.demo/helloworld/1.0-SNAPSHOT/xml/features
+    karaf> features:addurl mvn:com.talend.se.demo/helloworld/5.2.2/xml/features
     karaf> features:install helloworld
 
 To run in a simple jvm with camel during interactive integration tests use
@@ -36,7 +36,7 @@ This sample file should be easily deployed to any target container including
 - [ ] websphere
 - [ ] jboss
 
-Which target is used is congtrolled via maven profiles which controlled by flag
+Which target is used is controlled via maven profiles which controlled by flag
 files in the profiles directory.  Only one of the corresponding profiles should
 be enabled.  All others should be disabled.  To enable a flag file, just end it
 with .profile.  To disable a flag file append .disabled to the file name.
@@ -75,10 +75,9 @@ environment to be applied to both spring beans and camel routes.
 Talend Apache Platform
 ----------------------
 
-This pom depends on the demo-parent project which imports a tesb-platform pom
-for dependencyManagement of jar versions.  This encapsulates and provides a 
-single point of control for Talend dependencies.  To change which version of
-Talend is used, change the tesb.version and the four versions for the
-sub-products: cxf, camel, activemq, and karaf.  These should match and be
-consistent with the versions specified in the appropriate Talend ESB build which
-can be found at https://github.com/Talend/tesb-rt-se .
+This pom depends on the demo-parent project which in turn imports a pair of
+apache-platform pom's for dependencyManagement.  This encapsulates and provides
+a single point of control for Talend dependencies.  Note that the "apache
+platform" just refers to the fact that the project is intended to compose
+multiple apache projects into a logical "platform".  It is not an Apache
+community project although it is apachev2 licensed.

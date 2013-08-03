@@ -37,3 +37,8 @@ be overridden via the container.test.properties.
 Likewise, the  camel-maven-bundle plugin is configured to use the spring container
 via the same containerConfig system property.  However, the platform properties
 will still be applied.
+
+To change which version of Talend is used, change the tesb.version and the four
+versions for the sub-products: cxf, camel, activemq, and karaf.  These should
+match and be consistent with the versions specified in the appropriate Talend
+ESB build which can be found at https://github.com/Talend/tesb-rt-se .

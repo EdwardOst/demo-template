@@ -9,7 +9,7 @@
     <parent>
         <groupId>com.talend.se.demo</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>5.3.1</version>
+        <version>5.2.2</version>
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.talend.se.demo</groupId>
             <artifactId>util-spring</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

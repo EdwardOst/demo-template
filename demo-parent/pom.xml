@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.talend.se.demo</groupId>
     <artifactId>demo-parent</artifactId>
-    <version>5.3.1</version>
+    <version>5.2.2</version>
     <packaging>pom</packaging>
 
     <name>se-demo :: parent</name>
@@ -26,11 +26,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Talend Apache ESB platform properties -->
-        <tesb.version>5.3.1</tesb.version>
-        <cxf.version>2.7.5</cxf.version>
-        <camel.version>2.10.4</camel.version>
+        <tesb.version>5.2.2</tesb.version>
+        <cxf.version>2.7.3</cxf.version>
+        <camel.version>2.10.2</camel.version>
         <activemq.version>5.7.0</activemq.version>
-        <karaf.version>2.3.1</karaf.version>
+        <karaf.version>2.2.9</karaf.version>
         
          <!-- local nexus repo -->
         <distributionManagement.repository.url>http://localhost:8081/nexus/content/repositories/releases/</distributionManagement.repository.url>
