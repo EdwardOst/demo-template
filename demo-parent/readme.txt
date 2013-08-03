@@ -2,7 +2,13 @@ demo-parent
 
 Common parent pom for all demo projects.  Should ideally allow to build the
 project for karaf, tomcat, jetty, or spring by justing changing package type and
-setting profiles.
+setting profiles.  This project depends on the apache-platform project.  Note
+Note that although provided as apache v2 licensed code, this project is not part
+of an Apache Software foundation project.  The "apache platform" just refers to
+the fact that the project is intended to compose multiple apache projects into a
+logical "platform".  This demo-template uses that platform and adds maven
+conventions for targeting multiple runtime container environments.
+
 
 Profiles are controlled using file flags in the profiles folder,
 e.g. spring.profile, tomcat.profile, jetty.profile, karaf.profile,  There is one
@@ -31,5 +37,3 @@ be overridden via the container.test.properties.
 Likewise, the  camel-maven-bundle plugin is configured to use the spring container
 via the same containerConfig system property.  However, the platform properties
 will still be applied.
-
-
