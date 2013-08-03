@@ -4,3 +4,17 @@
 *.jar
 *.war
 *.ear
+/store/store-services/
+/store/store-api/
+/dynamicroutes/
+/vsc/
+/WebAppTest/
+/examples-parent/
+/examples/
+/errorhandling/
+/MavenWebApp/
+/multispeak/
+/store/
+/pricequote/
+/smx-cxf-codefirst/
+/helloworld/target/

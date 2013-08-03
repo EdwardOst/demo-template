@@ -13,7 +13,7 @@
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
-    <name>util-spring</name>
+    <name>se-demo :: util-spring</name>
 
     <dependencies>
         <dependency>

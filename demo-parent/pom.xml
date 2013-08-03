@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>demo-parent</name>
+    <name>se-demo :: parent</name>
     <description>Profiles shared by all Talend SE demos</description>
 
     <distributionManagement>

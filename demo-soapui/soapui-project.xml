@@ -1,63 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="demo-soapui" soapui-version="4.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HelloWorldServiceSoapBinding" type="wsdl" bindingName="{http://helloworld.demo.se.talend.com/}HelloWorldServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/helloworld?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/helloworld?wsdl"><con:part><con:url>http://localhost:8080/services/helloworld?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HelloWorldService" targetNamespace="http://helloworld.demo.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://helloworld.demo.se.talend.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://service.helloworld.demo.se.talend.com/">
-  <wsdl:types>
-    <xs:schema targetNamespace="http://service.helloworld.simple.demo.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:element name="return" type="xs:string"/>
-    </xs:schema>
-    <xs:schema targetNamespace="http://service.helloworld.demo.se.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.helloworld.demo.se.talend.com/" xmlns:ns1="http://service.helloworld.simple.demo.talend.com/">
-      <xs:import namespace="http://service.helloworld.simple.demo.talend.com/"/>
-      <xs:element name="greet" type="tns:greet"/>
-      <xs:element name="greetResponse" type="tns:greetResponse"/>
-      <xs:complexType name="greet">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="name" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="greetResponse">
-        <xs:sequence>
-          <xs:element minOccurs="0" ref="ns1:return"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:schema>
-  </wsdl:types>
-  <wsdl:message name="greet">
-    <wsdl:part element="ns1:greet" name="parameters"></wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="greetResponse">
-    <wsdl:part element="ns1:greetResponse" name="parameters"></wsdl:part>
-  </wsdl:message>
-  <wsdl:portType name="HelloWorld">
-    <wsdl:operation name="greet">
-      <wsdl:input message="tns:greet" name="greet"></wsdl:input>
-      <wsdl:output message="tns:greetResponse" name="greetResponse"></wsdl:output>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="HelloWorldServiceSoapBinding" type="tns:HelloWorld">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="greet">
-      <soap:operation soapAction="urn:Greet" style="document"/>
-      <wsdl:input name="greet">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="greetResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="HelloWorldService">
-    <wsdl:port binding="tns:HelloWorldServiceSoapBinding" name="HelloWorldPort">
-      <soap:address location="http://localhost:8080/services/helloworld"/>
-    </wsdl:port>
-  </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/helloworld/services/helloworld</con:endpoint><con:endpoint>http://localhost:8070/helloworld</con:endpoint><con:endpoint>http://localhost:8080/services/helloworld</con:endpoint><con:endpoint>http://localhost:9091/helloworld</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:Greet" name="greet" bindingOperationName="greet" type="Request-Response" outputName="greetResponse" inputName="greet" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9091/helloworld</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.helloworld.demo.se.talend.com/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <ser:greet>
-         <!--Optional:-->
-         <name>Ed Ost4</name>
-      </ser:greet>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:Greet"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PriceQuoteServiceSoapBinding" type="wsdl" bindingName="{http://pricequote.demo.se.talend.com/}PriceQuoteServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:6090/PriceQuotePort?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:6090/PriceQuotePort?wsdl"><con:part><con:url>http://localhost:6090/PriceQuotePort?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PriceQuoteService" targetNamespace="http://pricequote.demo.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pricequote.demo.se.talend.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+<con:soapui-project activeEnvironment="Default" name="demo-soapui" soapui-version="4.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PriceQuoteServiceSoapBinding" type="wsdl" bindingName="{http://pricequote.demo.se.talend.com/}PriceQuoteServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:6090/PriceQuotePort?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:6090/PriceQuotePort?wsdl"><con:part><con:url>http://localhost:6090/PriceQuotePort?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PriceQuoteService" targetNamespace="http://pricequote.demo.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pricequote.demo.se.talend.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema elementFormDefault="unqualified" targetNamespace="http://pricequote.demo.se.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="getUnitPrice" type="tns:getUnitPrice"/>
@@ -463,4 +405,57 @@
          <in>?</in>
       </ser:getWeatherReport>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.talend.org/service/getWeatherReport"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.talend.org/service/getWeatherReport"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="HelloWorldServiceSoapBinding" type="wsdl" bindingName="{http://helloworld.demo.se.talend.com/}HelloWorldServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8070/helloworld?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8070/helloworld?wsdl"><con:part><con:url>http://localhost:8070/helloworld?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HelloWorldService" targetNamespace="http://helloworld.demo.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://helloworld.demo.se.talend.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://helloworld.service.demo.se.talend.com/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://helloworld.service.demo.se.talend.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://helloworld.service.demo.se.talend.com/">
+      <xs:element name="greet" type="tns:greet"/>
+      <xs:element name="greetResponse" type="tns:greetResponse"/>
+      <xs:complexType name="greet">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="greetResponse">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="greet">
+    <wsdl:part element="ns1:greet" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="greetResponse">
+    <wsdl:part element="ns1:greetResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorld">
+    <wsdl:operation name="greet">
+      <wsdl:input message="tns:greet" name="greet"></wsdl:input>
+      <wsdl:output message="tns:greetResponse" name="greetResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldServiceSoapBinding" type="tns:HelloWorld">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="greet">
+      <soap:operation soapAction="urn:Greet" style="document"/>
+      <wsdl:input name="greet">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="greetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldService">
+    <wsdl:port binding="tns:HelloWorldServiceSoapBinding" name="HelloWorldPort">
+      <soap:address location="http://localhost:8070/helloworld"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8070/helloworld</con:endpoint><con:endpoint>http://localhost:9091/helloworld</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:Greet" name="greet" bindingOperationName="greet" type="Request-Response" outputName="greetResponse" inputName="greet" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:9091/helloworld</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="http://helloworld.service.demo.se.talend.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hel:greet>
+         <name>Ed Ost8</name>
+      </hel:greet>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:Greet"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

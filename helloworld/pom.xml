@@ -14,7 +14,7 @@
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
-    <name>helloworld</name>
+    <name>se-demo :: helloworld</name>
 
     <dependencies>
         <dependency>

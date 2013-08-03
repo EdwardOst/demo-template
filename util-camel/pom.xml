@@ -13,7 +13,7 @@
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
-    <name>util-camel</name>
+    <name>se-demo :: util-camel</name>
 
     <dependencies>
         <dependency>
