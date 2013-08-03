@@ -4,13 +4,12 @@
 
     <groupId>com.talend.se.demo</groupId>
     <artifactId>helloworld</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>com.talend.se.demo</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>5.3.1</version>
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 

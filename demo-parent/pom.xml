@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.talend.se.demo</groupId>
     <artifactId>demo-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>5.3.1</version>
     <packaging>pom</packaging>
 
     <name>se-demo :: parent</name>
@@ -79,7 +79,7 @@
             <dependency>
                 <groupId>com.talend.se.platform</groupId>
                 <artifactId>tesb</artifactId>
-                <version>${tesb.version}-SNAPSHOT</version>
+                <version>${tesb.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
