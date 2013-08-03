@@ -15,7 +15,7 @@ To build
 
 To deploy
 
-    karaf> features:addurl mvn:com.talend.se.demo/helloworld/5.2.2/xml/features
+    karaf> features:addurl mvn:com.talend.se.demo/helloworld/5.3.1/xml/features
     karaf> features:install helloworld
 
 To run in a simple jvm with camel during interactive integration tests use
