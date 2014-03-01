@@ -49,6 +49,10 @@ Stop the HelloWorldServer and then start the HelloWorldServer_2.
     ======>>> SERVER 2
     ========>>>>Client HelloWorld: ... if you didn't just see a Hello World message something went wrong
 
-Note that the message returned by the new server has changed.  Nothing dramatic, just dependency injection in action.  But there are some other advantages to using OSGI services.  In this example we had to restart the client to demonstrate that the new service had been plugged in.  OSGI services provide dynamic services so that when services are unplugged and new realizations plugged in, clients are not affected.
+Note that the message returned by the new server has changed.
+Nothing dramatic, just dependency injection in action.
+But there are some other advantages to using OSGI services.
+In this example we had to restart the client to demonstrate that the new service had been plugged in.
+OSGI services provide dynamic services so that when services are unplugged and new realizations plugged in, clients are not affected.
 
 [aries-example]: http://aries.apache.org/documentation/tutorials/blueprinthelloworldtutorial.html
