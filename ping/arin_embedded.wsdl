@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ArinService" targetNamespace="http://twt.demo.se.talend.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://twt.demo.se.talend.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://twt.demo.se.talend.com/" elementFormDefault="qualified" targetNamespace="http://twt.demo.se.talend.com/" version="1.0">
+            <xs:element name="address" type="tns:Address"/>
+            <xs:element name="netblock" type="tns:NetBlock"/>
+            <xs:element name="network" type="tns:Network"/>
+            <xs:element name="org" type="tns:Org"/>
+            <xs:element name="ping" type="tns:ping"/>
+            <xs:element name="pingResponse" type="tns:pingResponse"/>
+            <xs:element name="pingResult" type="tns:PingResult"/>
+            <xs:element name="whoIs" type="tns:WhoIs"/>
+            <xs:complexType name="ping">
+                <xs:sequence>
+                    <xs:element name="ipAddress" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="pingResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:whoIs"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="WhoIs">
+                <xs:sequence>
+                    <xs:element name="network" nillable="true" type="tns:Network"/>
+                    <xs:element name="org" nillable="true" type="tns:Org"/>
+                </xs:sequence>
+                <xs:attribute name="ip" type="xs:string" use="required"/>
+                <xs:attribute name="ref" type="xs:string" use="required"/>
+            </xs:complexType>
+            <xs:complexType name="Network">
+                <xs:sequence>
+                    <xs:element name="netblocks" nillable="true">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="netblock" nillable="true" type="tns:NetBlock"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="ref" type="xs:string" use="required"/>
+            </xs:complexType>
+            <xs:complexType name="NetBlock">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="pingResult" nillable="true" type="tns:PingResult"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PingResult">
+                <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                        <xs:attribute name="host" type="xs:string"/>
+                        <xs:attribute name="returnValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+            <xs:complexType name="Org">
+                <xs:sequence>
+                    <xs:element name="address" nillable="true" type="tns:Address"/>
+                </xs:sequence>
+                <xs:attribute name="handle" type="xs:string" use="required"/>
+                <xs:attribute name="name" type="xs:string" use="required"/>
+                <xs:attribute name="ref" type="xs:string" use="required"/>
+            </xs:complexType>
+            <xs:complexType name="Address">
+                <xs:sequence>
+                    <xs:element name="city" nillable="true" type="xs:string"/>
+                    <xs:element name="state" nillable="true" type="xs:string"/>
+                    <xs:element name="zip" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ping">
+        <wsdl:part name="parameters" element="tns:ping">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="pingResponse">
+        <wsdl:part name="parameters" element="tns:pingResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="Arin">
+        <wsdl:operation name="ping">
+            <wsdl:input name="ping" message="tns:ping">
+            </wsdl:input>
+            <wsdl:output name="pingResponse" message="tns:pingResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ArinServiceSoapBinding" type="tns:Arin">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ping">
+            <soap:operation soapAction="urn:Greet" style="document"/>
+            <wsdl:input name="ping">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="pingResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ArinService">
+        <wsdl:port name="ArinPort" binding="tns:ArinServiceSoapBinding">
+            <soap:address location="http://localhost:9090/ArinPort"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

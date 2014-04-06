@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:tns="http://twt.demo.se.talend.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://twt.demo.se.talend.com/">
+  <xs:element name="address" type="tns:Address"/>
+  <xs:element name="netblock" type="tns:NetBlock"/>
+  <xs:element name="org" type="tns:Org"/>
+  <xs:element name="pingResult" type="tns:PingResult"/>
+  <xs:element name="whoIs" type="tns:WhoIs"/>
+  <xs:complexType name="WhoIs">
+    <xs:sequence>
+      <xs:element name="netblocks" nillable="true">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="netblock" nillable="true" type="tns:NetBlock"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="org" nillable="true" type="tns:Org"/>
+    </xs:sequence>
+    <xs:attribute name="ip" type="xs:string" use="required"/>
+    <xs:attribute name="ref" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="NetBlock">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="pingResult" nillable="true" type="tns:PingResult"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PingResult">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="host" type="xs:string"/>
+        <xs:attribute name="returnValue" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="Org">
+    <xs:sequence>
+      <xs:element name="address" nillable="true" type="tns:Address"/>
+    </xs:sequence>
+    <xs:attribute name="handle" type="xs:string" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="ref" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="Address">
+    <xs:sequence>
+      <xs:element name="city" nillable="true" type="xs:string"/>
+      <xs:element name="state" nillable="true" type="xs:string"/>
+      <xs:element name="zip" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ping" type="tns:ping"/>
+  <xs:complexType name="ping">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ipaddress" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="pingResponse" type="tns:pingResponse"/>
+  <xs:complexType name="pingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:WhoIs"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

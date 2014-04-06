@@ -16,6 +16,8 @@
 /multispeak/
 /store/
 /pricequote/
+/ge/
+/osgi/
 
 # build artifacts
 *~
@@ -39,3 +41,10 @@ derby.log
 *.ipr
 *.iws
 
+/GroovyJavaDemo/nbproject/private/
+/GroovyJavaDemo/build/
+/GroovyExample/nbproject/private/
+/GroovyExample/build/
+/groovy/util/nbproject/private/
+/groovy/util/build/
+/groovy/util/dist/

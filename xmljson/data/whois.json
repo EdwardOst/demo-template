@@ -1,0 +1,17 @@
+{
+	"netblocks" : [{
+			"netblock" : [{
+					"pingResult" : {
+						"pingReturn" : 1,
+						"pingText" : ["", "Pinging 96.224.0.0 with 32 bytes of data:", "Request timed out.", "Request timed out.", "Request timed out.", "", "Ping statistics for 96.224.0.0:", "    Packets: Sent = 3, Received = 0, Lost = 3 (100% loss),"]
+					}
+				}
+			]
+		}
+	],
+	"org" : {
+		"city" : "Ashburn",
+		"state" : "VA",
+		"zip" : "20147"
+	}
+}

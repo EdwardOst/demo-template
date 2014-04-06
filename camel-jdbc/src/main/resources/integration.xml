@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"	
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:prop="http://camel.apache.org/schema/placeholder"
+       xmlns:cxfcamel="http://cxf.apache.org/transports/camel"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws
+			http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util.xsd
+		http://activemq.apache.org/schema/core http://activemq.org/config/1.0/1.0.xsd
+		http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd 
+		http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+                http://cxf.apache.org/transports/camel http://cxf.apache.org/transports/camel.xsd
+         ">
+
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+        <dataFormats>
+            <xstream id="xstream-utf8" encoding="UTF-8"/>
+        </dataFormats>
+        
+        <!-- create camel_jdbc_test table
+        <route>
+            <from uri="timer://kickoff?period=1s&amp;repeatCount=1"/>
+            <setBody>
+                <constant>CREATE TABLE `camel_jdbc_test` ( `sysid` int(11) NOT NULL AUTO_INCREMENT,  `customerId` varchar(45) NOT NULL,  `last` varchar(45) NOT NULL,  `first` varchar(45) DEFAULT NULL,  `gender` char(1) DEFAULT NULL,  PRIMARY KEY (`sysid`),  UNIQUE KEY `customerId_UNIQUE` (`customerId`),  KEY `name` (`last`,`first`))</constant>
+            </setBody>
+            <to uri="jdbc:dataSource"/>
+        </route -->
+        
+        <route>
+            <from uri="timer://kickoff?period=1s&amp;repeatCount=1"/>
+            <setBody>
+                <constant>select * from customers</constant>
+            </setBody>
+            <to uri="jdbc:dataSource"/>
+            <marshal ref="xstream-utf8"/>
+            <to uri="log:customers"/>
+        </route>
+        
+    </camelContext>
+		
+
+</beans>

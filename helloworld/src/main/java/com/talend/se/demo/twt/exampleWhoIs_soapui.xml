@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:pingResponse xmlns:ns2="http://twt.demo.se.talend.com/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://twt.demo.se.talend.com/    C:/Users/eost/Documents/netbeans/ping/src/com/talend/se/demo/twt/arin_schema1.xsd">
+
+    <ns2:whoIs ip="96.241.55.231" ref="http://whois.arin.net/rest/net/NET-96-224-0-0-1">
+        <netblocks>
+            <netblock>
+                <pingResult host="96.224.0.0" returnValue="1">Pinging 96.224.0.0 with 32 bytes of data:Request timed out.Request timed out.Request timed out.Ping statistics for 96.224.0.0:    Packets: Sent = 3, Received = 0, Lost = 3 (100% loss)</pingResult>
+                <pingResult host="96.224.0.1" returnValue="1">Pinging 96.224.0.1 with 32 bytes of data:Request timed out.Request timed out.Request timed out.Ping statistics for 96.224.0.1:    Packets: Sent = 3, Received = 0, Lost = 3 (100% loss)</pingResult>
+                <pingResult host="96.224.0.2" returnValue="0">Pinging 96.224.0.2 with 32 bytes of data:Reply from 96.224.0.2: bytes=32 time=52ms TTL=56Reply from 96.224.0.2: bytes=32 time=54ms TTL=56Reply from 96.224.0.2: bytes=32 time=55ms TTL=56Ping statistics for 96.224.0.2:    Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),Approximate round trip times in milli-seconds:    Minimum = 52ms, Maximum = 55ms, Average = 53ms</pingResult>
+            </netblock>
+        </netblocks>
+        <org handle="VRIS" name="Verizon Online LLC" ref="http://whois.arin.net/rest/org/VRIS">
+            <address>
+                <city>Ashburn</city>
+                <state>VA</state>
+                <zip>20147</zip>
+            </address>
+        </org>
+    </ns2:whoIs>
+</ns2:pingResponse>

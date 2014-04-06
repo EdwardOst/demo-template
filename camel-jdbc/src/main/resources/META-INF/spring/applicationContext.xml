@@ -9,11 +9,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean id="helloWorld" class="com.talend.se.demo.helloworld.HelloWorldFrench">
-            <property name="postMessage" value="{{messagePostfix}}"/>
-        </bean>
+    <context:annotation-config />
 
+	<import resource="classpath:${containerConfig}"/>	
+	<import resource="classpath:beans.xml"/>	
+	<import resource="classpath:integration.xml"/>	
 
-        <bean id="arin" class="com.talend.se.demo.twt.ArinImpl">
-        </bean>
 </beans>

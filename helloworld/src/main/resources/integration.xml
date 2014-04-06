@@ -31,7 +31,6 @@
     <bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
     <bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
 
-    <!-- Stand-alone CXF endpoint instance -->
     <cxf:cxfEndpoint id="helloWorldService"
                      address="{{helloWorldEndpoint.service.path}}"
                      serviceClass="com.talend.se.demo.helloworld.HelloWorld">
@@ -49,6 +48,17 @@
         </cxf:features>
     </cxf:cxfEndpoint>
 
+    <cxf:cxfEndpoint id="arinService"
+                     address="{{arinEndpoint.service.path}}"
+                     serviceClass="com.talend.se.demo.twt.Arin">
+        <cxf:inInterceptors>
+            <ref bean="loggingInInterceptor" />
+        </cxf:inInterceptors>
+        <cxf:outInterceptors>
+            <ref bean="loggingOutInterceptor" />
+        </cxf:outInterceptors>
+    </cxf:cxfEndpoint>
+
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <camel:propertyPlaceholder id="properties" location="ref:propertySources"/>
         <!-- enable package scanning for annotations -->
@@ -62,7 +72,10 @@
 
         <camel:endpoint id="helloWorld-endpoint" uri="cxf:bean:helloWorldService" />
         <camel:endpoint id="helloWorld-bean" uri="bean:helloWorld" />
-            
+
+        <camel:endpoint id="arin-endpoint" uri="cxf:bean:arinService" />
+        <camel:endpoint id="arin-bean" uri="bean:arin" />
+                    
         <!-- host the HelloWorld web service -->
         <route id="helloWorld-server">
             <from ref="helloWorld-endpoint" />
@@ -72,7 +85,17 @@
             <to uri="log:helloWorld-requestReceived"/>
             <to ref="helloWorld-bean"/>
         </route>
+
+        <route id="arin-server">
+            <from ref="arin-endpoint" />
+            <setHeader headerName="CamelBeanMethodName">
+                <simple>$simple{header.operationName}</simple>
+            </setHeader>
+            <to uri="log:arin-requestReceived"/>
+            <to ref="arin-bean"/>
+        </route>
         
+                
         <route id="testPropertyPlaceholders">
             <from uri="timer:testPropertyPlaceholders?repeatCount=3&amp;period=1000" />
             <setBody>
@@ -80,7 +103,7 @@
             </setBody>
             <to uri="log:testPropertyPlaceholders"/>
         </route>
-        
+
     </camelContext>
 		
 

@@ -4,12 +4,13 @@
 
     <groupId>com.talend.se.demo</groupId>
     <artifactId>helloworld</artifactId>
+    <version>5.4.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>com.talend.se.demo</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>5.3.1</version>
+        <version>5.4.1-SNAPSHOT</version>
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
@@ -68,7 +69,7 @@
         <dependency>
             <groupId>com.talend.se.demo</groupId>
             <artifactId>util-spring</artifactId>
-            <version>${project.version}</version>
+            <version>${tesb.version}</version>
         </dependency>
 
         <dependency>
@@ -163,6 +164,7 @@
                 <artifactId>cxf-java2ws-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>HelloWorld</id>
                         <goals>
                             <goal>java2ws</goal>
                         </goals>
@@ -170,6 +172,26 @@
                         <configuration>
                             <className>com.talend.se.demo.helloworld.HelloWorld</className>
                             <outputFile>${project.build.directory}/generated-resources/cxf/wsdl/HelloWorld.wsdl</outputFile>
+                            <frontend>jaxws</frontend>
+                            <genWsdl>true</genWsdl>
+                            <genWrapperbean>true</genWrapperbean>
+                            <genClient>false</genClient>
+                            <genServer>false</genServer>
+                            <verbose>true</verbose>
+                            <version>true</version>
+                            <attachWsdl>false</attachWsdl>
+                            <argline>-createxsdimports -s ${project.build.directory}/generated-sources/cxf</argline>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Arin</id>
+                        <goals>
+                            <goal>java2ws</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <className>com.talend.se.demo.twt.Arin</className>
+                            <outputFile>${project.build.directory}/generated-resources/cxf/wsdl/arin.wsdl</outputFile>
                             <frontend>jaxws</frontend>
                             <genWsdl>true</genWsdl>
                             <genWrapperbean>true</genWrapperbean>
