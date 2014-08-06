@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"	
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:prop="http://camel.apache.org/schema/placeholder"
+       xmlns:cxfcamel="http://cxf.apache.org/transports/camel"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws
+			http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util.xsd
+		http://activemq.apache.org/schema/core http://activemq.org/config/1.0/1.0.xsd
+		http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd 
+		http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+                http://cxf.apache.org/transports/camel http://cxf.apache.org/transports/camel.xsd
+         ">
+
+    <bean id="customConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
+        <property name="host" value="localhost" />
+        <property name="port" value="5672" />
+        <property name="username" value="tadmin" />
+        <property name="password" value="tadmin" />
+        <property name="virtualHost" value="/" />
+    </bean>
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <camel:propertyPlaceholder id="properties" location="ref:propertySources"/>
+        <!-- enable package scanning for annotations -->
+        <!-- package>com.talend.demo.store.service</package -->
+		
+        <!-- Global Error Handler -->
+        <!-- camel:errorHandler id="globalErrorHandler" type="DeadLetterChannel" deadLetterUri="direct:errorEndpoint"></camel:errorHandler -->
+		
+        <!-- Use Camel endpoints to allow property driven uri substitution -->
+        <!-- camel:endpoint id="customerRepoSource" uri="{{customerRepoSource}}" / -->
+
+        <!-- host the HelloWorld web service -->
+        <route id="helloWorldTest">
+            <from uri="timer:helloWorldTest?repeatCount=3&amp;period=1000" />
+            <log message="test message" />
+            <to uri="bean:helloWorld"/>
+            <to uri="log:result" />
+            <to uri="rabbitmq://localhost:5672/ex1?username=tadmin&amp;password=tadmin"/>
+        </route>
+
+    </camelContext>
+		
+
+</beans>

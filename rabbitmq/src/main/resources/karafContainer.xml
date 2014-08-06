@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"	
+       xmlns:camel-osgi="http://camel.apache.org/schema/osgi"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+                    http://www.springframework.org/schema/util/spring-util.xsd
+                http://www.springframework.org/schema/osgi
+                    http://www.springframework.org/schema/osgi/spring-osgi.xsd
+                http://www.springframework.org/schema/osgi-compendium
+                    http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd
+    ">
+
+    <!-- service locator -->
+    <import resource="classpath:META-INF/tesb/locator/beans-osgi.xml" />
+    <!-- service activity monitor -->
+    <import resource="classpath:META-INF/tesb/agent-osgi.xml"/>
+
+    <bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" />
+    <util:properties id="defaultProperties">
+        <prop key="localMessage1">karafDefaultValue1</prop>
+        <prop key="localMessage2">karafDefaultValue2</prop>
+    </util:properties> 
+
+    <!-- load just system properties to allow dynamic specification of properties file via local.config System property -->
+    <bean id="systemPropertiesConfig"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="placeholderPrefix" value="##" />
+        <property name="placeholderSuffix" value="##" />
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+
+    <osgix:cm-properties id="osgi-cm-properties" persistent-id="com.talend.se.demo.helloworld">
+        <prop key="cmMessage1">default karaf xml message </prop>
+        <prop key="messagePostfix"> -- osgi:cm karaf xml message postfix</prop>
+    </osgix:cm-properties>
+
+    <bean id="optionalProperty" class="org.springframework.beans.factory.config.PropertiesFactoryBean" abstract="true">
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
+    <!-- centralize properties so for reference by both spring and camel property placeholders -->
+    <bean id="propertySources" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="propertiesArray">
+            <util:list>
+                <ref local="defaultProperties"/>
+                <util:properties location="classpath:container.properties"/>
+                <bean parent="optionalProperty">
+                    <property name="location" value="classpath:container.test.properties"/>
+                </bean>
+                <util:properties location="classpath:app.properties"/>
+                <bean parent="optionalProperty">
+                    <property name="location" value="classpath:app.test.properties"/>
+                </bean>
+                <ref local="osgi-cm-properties"/>
+                <!-- local configuration by developer -->
+                <bean parent="optionalProperty">
+                    <property name="location" value="##local.config##"/>
+                </bean>
+                <!-- externalized configuration in runtime environment by operations -->
+                <bean parent="optionalProperty">
+                    <property name="location" value="##external.config##"/>
+                </bean>
+            </util:list>
+        </property>
+    </bean>
+
+    <bean id="springPropertiesPlaceholder"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="placeholderPrefix" value="{{" />
+        <property name="placeholderSuffix" value="}}" />
+        <property name="properties" ref="propertySources"/>
+    </bean>
+
+    <bean id="testAppProperty" class="java.lang.String">
+        <constructor-arg value="{{appTestProperty}}"/>
+    </bean>
+    
+    <bean id="testContainerProperty" class="java.lang.String">
+        <constructor-arg value="{{containerTestProperty}}"/>
+    </bean>
+
+    <bean id="printProperties" class="com.talend.se.demo.util.spring.PrintProperties">
+        <property name="propertyList">
+            <map>
+                <entry key="container" value="{{container}}"/>
+                <entry key="containerConfig" value="{{containerConfig}}"/>
+                <entry key="etcConfigVar" value="{{etcConfigVar}}"/>
+                <entry key="appTestProperty" value="{{appTestProperty}}"/>
+                <entry key="containerTestProperty" value="{{containerTestProperty}}"/>
+                <entry key="helloWorldEndpoint.service.path" value="{{helloWorldEndpoint.service.path}}"/>
+                <entry key="localMessage1" value="{{localMessage1}}"/>
+                <entry key="localMessage2" value="{{localMessage2}}"/>
+                <entry key="cmMessage1" value="{{cmMessage1}}"/>
+                <entry key="cmMessage2" value="{{cmMessage2}}"/>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

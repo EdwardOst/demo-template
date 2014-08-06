@@ -4,13 +4,12 @@
 
     <groupId>com.talend.se.demo</groupId>
     <artifactId>helloworld</artifactId>
-    <version>5.4.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>com.talend.se.demo</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>5.4.1-SNAPSHOT</version>
+        <version>5.5.1-SNAPSHOT</version>
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
@@ -69,7 +68,7 @@
         <dependency>
             <groupId>com.talend.se.demo</groupId>
             <artifactId>util-spring</artifactId>
-            <version>${tesb.version}</version>
+            <version>${tesb.version}-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -107,6 +106,7 @@
                             org.apache.cxf.resource,
                             org.apache.cxf.jaxws,
                             org.apache.cxf.interceptor,
+                            org.apache.camel.component.cxf,
                             org.springframework.beans.factory.config,
                             org.springframework.scheduling.config,
                             org.springframework.scheduling.concurrent,

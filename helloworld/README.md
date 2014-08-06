@@ -4,8 +4,10 @@ This simple example aims to demonstrate a basic ESB example using CXF and Camel.
 It deploys a basic web service that utilizes TESB infrastructure such as the
 Service Locator and Service Activity Monitor in a flexible virtual service 
 container which can run in any java environment.  It also demonstrates loose
-coupling to the TESB platform using the apache-platform maven projects so that
+coupling to the TESB platform using the [apache-platform] projects so that
 it is simple to upgrade (or downgrade) from one version of Talend to another.
+
+[apache-platform]: https://github.com/EdwardOst/apache-platform
 
 Install and Deploy
 ------------------
@@ -75,9 +77,10 @@ environment to be applied to both spring beans and camel routes.
 Talend Apache Platform
 ----------------------
 
-This pom depends on the demo-parent project which in turn imports a pair of
-apache-platform pom's for dependencyManagement.  This encapsulates and provides
-a single point of control for Talend dependencies.  Note that the "apache
+This pom depends on the demo-parent project which imports a talend-esb pom
+which in turn depends on a set of apache-platform pom's for
+dependencyManagement.  This encapsulates verions for dependencies and provides a
+single point of control for Talend dependencies.  Note that the "apache
 platform" just refers to the fact that the project is intended to compose
 multiple apache projects into a logical "platform".  It is not an Apache
 community project although it is apachev2 licensed.

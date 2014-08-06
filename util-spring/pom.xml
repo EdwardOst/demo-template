@@ -9,7 +9,7 @@
     <parent>
         <groupId>com.talend.se.demo</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>5.4.1-SNAPSHOT</version>
+        <version>5.5.1-SNAPSHOT</version>
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
