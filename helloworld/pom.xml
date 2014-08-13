@@ -66,18 +66,14 @@
             <artifactId>camel-test-spring</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.talend.se.demo</groupId>
-            <artifactId>util-spring</artifactId>
-            <version>${tesb.version}-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.talend.esb</groupId>
             <artifactId>locator</artifactId>
+            <version>5.5.1</version>
         </dependency>
         <dependency>
             <groupId>org.talend.esb</groupId>
             <artifactId>sam-agent</artifactId>
+            <version>5.5.1</version>
         </dependency>
     </dependencies>
 
@@ -172,26 +168,6 @@
                         <configuration>
                             <className>com.talend.se.demo.helloworld.HelloWorld</className>
                             <outputFile>${project.build.directory}/generated-resources/cxf/wsdl/HelloWorld.wsdl</outputFile>
-                            <frontend>jaxws</frontend>
-                            <genWsdl>true</genWsdl>
-                            <genWrapperbean>true</genWrapperbean>
-                            <genClient>false</genClient>
-                            <genServer>false</genServer>
-                            <verbose>true</verbose>
-                            <version>true</version>
-                            <attachWsdl>false</attachWsdl>
-                            <argline>-createxsdimports -s ${project.build.directory}/generated-sources/cxf</argline>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>Arin</id>
-                        <goals>
-                            <goal>java2ws</goal>
-                        </goals>
-                        <phase>process-classes</phase>
-                        <configuration>
-                            <className>com.talend.se.demo.twt.Arin</className>
-                            <outputFile>${project.build.directory}/generated-resources/cxf/wsdl/arin.wsdl</outputFile>
                             <frontend>jaxws</frontend>
                             <genWsdl>true</genWsdl>
                             <genWrapperbean>true</genWrapperbean>

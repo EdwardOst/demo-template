@@ -13,7 +13,4 @@
             <property name="postMessage" value="{{messagePostfix}}"/>
         </bean>
 
-
-        <bean id="arin" class="com.talend.se.demo.twt.ArinImpl">
-        </bean>
 </beans>

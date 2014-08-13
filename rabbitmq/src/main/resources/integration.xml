@@ -24,33 +24,71 @@
                 http://cxf.apache.org/transports/camel http://cxf.apache.org/transports/camel.xsd
          ">
 
-    <bean id="customConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
+    <!-- not supported until camel 2.14 -->
+    <!-- bean id="customConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
         <property name="host" value="localhost" />
         <property name="port" value="5672" />
         <property name="username" value="tadmin" />
         <property name="password" value="tadmin" />
         <property name="virtualHost" value="/" />
+    </bean -->
+
+    <!-- start activemq configuration -->
+    <bean id="jmsConnectionFactory" 
+          class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616" />
+    </bean>
+
+    <bean id="pooledConnectionFactory" 
+          class="org.apache.activemq.pool.PooledConnectionFactory" init-method="start" destroy-method="stop">
+        <property name="maxConnections" value="5" />
+        <property name="connectionFactory" ref="jmsConnectionFactory" />
+    </bean>
+
+    <bean id="jmsConfig" 
+          class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+        <property name="concurrentConsumers" value="20"/>
+    </bean>
+
+    <bean id="activemq" 
+          class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="configuration" ref="jmsConfig"/>
+    </bean>
+
+<!-- 
+"amqp://ritchiem:bob@temp/testHost?brokerlist='tcp://localhost:5672;tcp://fancyserver:3000/',failover='roundrobin'";
+"amqp://user:pass@clientid/virtualhost?brokerlist='tcp://host:1?option1=\'value\',option2=\'value\';vm://:3?option1=\'value\'',failover='method?option1=\'value\',option2='value''";
+-->
+    <bean id="amqp" class="org.apache.qpid.client.AMQConnectionFactory">
+        <constructor-arg value="amqp://tadmin:tadmin@myClientId/virtualhost?brokerlist='tcp://localhost:61617'"/>
     </bean>
 
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <camel:propertyPlaceholder id="properties" location="ref:propertySources"/>
-        <!-- enable package scanning for annotations -->
-        <!-- package>com.talend.demo.store.service</package -->
+        <!-- camel:propertyPlaceholder id="properties" location="ref:propertySources"/ -->
 		
         <!-- Global Error Handler -->
         <!-- camel:errorHandler id="globalErrorHandler" type="DeadLetterChannel" deadLetterUri="direct:errorEndpoint"></camel:errorHandler -->
 		
-        <!-- Use Camel endpoints to allow property driven uri substitution -->
-        <!-- camel:endpoint id="customerRepoSource" uri="{{customerRepoSource}}" / -->
-
-        <!-- host the HelloWorld web service -->
-        <route id="helloWorldTest">
-            <from uri="timer:helloWorldTest?repeatCount=3&amp;period=1000" />
-            <log message="test message" />
-            <to uri="bean:helloWorld"/>
-            <to uri="log:result" />
-            <to uri="rabbitmq://localhost:5672/ex1?username=tadmin&amp;password=tadmin"/>
+        <!-- activemq to rabbitmq -->
+        <route id="toRMQ">
+            <from uri="activemq:queue:toRMQ?concurrentConsumers=5" />
+            <to uri="log:toRMQ?showHeaders=true" />
+            <to uri="rabbitmq://localhost:5672/adsb?routingKey=A&amp;username=tadmin&amp;password=tadmin"/>
         </route>
+
+        <!-- rabbitmq to activemq -->
+        <!-- route id="fromRMQ1">
+            <from uri="rabbitmq://localhost:5672/junk?queue=adsbQ1&amp;routingKey=A&amp;autoDelete=false&amp;username=tadmin&amp;password=tadmin"/>
+            <to uri="log:fromRMQ?showHeaders=true" />
+            <to uri="activemq:queue:fromRMQ" />
+        </route -->
+
+        <route id="fromActiveMQ_AMQP">
+            <from uri="amqp:queue:from_activemq_amqp"/>
+            <to uri="log:fromRMQ?showHeaders=true" />
+        </route>
+
 
     </camelContext>
 		

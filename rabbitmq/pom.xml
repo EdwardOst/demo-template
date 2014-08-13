@@ -9,12 +9,16 @@
     <parent>
         <groupId>com.talend.se.demo</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>5.4.2-SNAPSHOT</version>
+        <version>5.5.1-SNAPSHOT</version>
         <relativePath>../demo-parent/pom.xml</relativePath>
     </parent>
 
     <name>se-demo :: rabbitmq</name>
-	
+
+    <properties>
+        <qpid.version>0.28_1</qpid.version>
+    </properties>
+                	
     <dependencies>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -51,24 +55,28 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cxf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
             <artifactId>camel-test-spring</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-camel</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-rabbitmq</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-amqp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.qpid</artifactId>
+            <version>${qpid.version}</version>
         </dependency>
 
     </dependencies>
@@ -83,22 +91,16 @@
                 <configuration>
                     <instructions>
                         <Import-Package>
-                            javax.jws,
-                            javax.wsdl,
-                            javax.xml.bind,
-                            javax.xml.bind.annotation,
-                            javax.xml.namespace,
-                            javax.xml.ws,
-                            META-INF.cxf,
-                            META-INF.cxf.osgi,
-                            org.apache.cxf.bus,
-                            org.apache.cxf.bus.spring,
-                            org.apache.cxf.bus.resource,
-                            org.apache.cxf.configuration.spring,
-                            org.apache.cxf.resource,
-                            org.apache.cxf.jaxws,
-                            org.apache.cxf.interceptor,
-                            org.apache.camel.component.cxf,
+                            org.apache.activemq,
+                            org.apache.activemq.xbean,
+                            org.apache.activemq.spring,
+                            org.apache.activemq.broker,
+                            org.apache.activemq.security,
+                            org.apache.activemq.jaas,
+                            org.apache.activemq.pool,
+                            org.apache.activemq.camel.component,
+                            org.apache.camel.component.jms,
+                            org.apache.qpid.client,
                             org.springframework.beans.factory.config,
                             org.springframework.scheduling.config,
                             org.springframework.scheduling.concurrent,

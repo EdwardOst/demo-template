@@ -26,19 +26,25 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Talend Apache ESB platform properties -->
-        <tesb.version>5.4.2</tesb.version>
+        <!-- tesb.version>5.4.2</tesb.version>
         <cxf.version>2.7.11</cxf.version>
         <camel.version>2.12.3</camel.version>
         <activemq.version>5.7.0</activemq.version>
         <karaf.version>2.3.3</karaf.version>
-        <spring.version>3.2.4.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version -->
 
+        <tesb.version>5.5.1</tesb.version>
+        <cxf.version>2.7.11</cxf.version>
+        <camel.version>2.13.1</camel.version>
+        <activemq.version>5.10.0</activemq.version>
+        <karaf.version>2.3.4</karaf.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
         
-         <!-- local nexus repo -->
+        <!-- local nexus repo -->
         <distributionManagement.repository.url>http://localhost:8081/nexus/content/repositories/releases/</distributionManagement.repository.url>
         <distributionManagement.snapshotRepository.url>http://localhost:8081/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url>
 
-         <!-- ec2 nexus repo -->
+        <!-- ec2 nexus repo -->
         <!-- distributionManagement.repository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/releases/</distributionManagement.repository.url>
         <distributionManagement.snapshotRepository.url>http://nexus.openmashvista.net:11681/nexus/content/repositories/snapshots/</distributionManagement.snapshotRepository.url -->
 
@@ -78,13 +84,67 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
+            <!-- dependency>
                 <groupId>com.talend.se.platform</groupId>
                 <artifactId>tesb</artifactId>
                 <version>${tesb.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency -->
+
+            <!-- dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-kahadb-store</artifactId>
+                <version>${activemq.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-spring</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-pool</artifactId>
+                <version>${activemq.version}</version>
+            </dependency -->
+
+            <dependency>
+                <groupId>org.apache.servicemix</groupId>
+                <artifactId>parent</artifactId>
+                <version>5.1.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-parent</artifactId>
+                <version>${camel.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-parent</artifactId>
+                <version>${activemq.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-parent</artifactId>
+                <version>${cxf.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -284,7 +344,7 @@
                 <configuration>
                     <!-- unit tests are always us the spring config -->
                     <systemPropertyVariables>
-			<container>${container}</container>
+                        <container>${container}</container>
                         <containerConfig>container.xml</containerConfig>
                     </systemPropertyVariables>
                 </configuration>

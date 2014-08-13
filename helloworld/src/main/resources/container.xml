@@ -21,7 +21,8 @@
     <!-- service activity monitor -->
     <import resource="classpath:META-INF/tesb/agent-context.xml" />
 
-    <bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" />
+    <!-- bean id="systemProperties" class="com.talend.se.demo.util.spring.PrintSystemProperties" / -->
+    
     <util:properties id="defaultProperties">
         <prop key="localMessage1">springDefaultValue1</prop>
         <prop key="localMessage2">springDefaultValue2</prop>
@@ -82,7 +83,7 @@
         <constructor-arg value="{{containerTestProperty}}"/>
     </bean>
 
-    <bean id="printProperties" class="com.talend.se.demo.util.spring.PrintProperties">
+    <!-- bean id="printProperties" class="com.talend.se.demo.util.spring.PrintProperties">
         <property name="propertyList">
             <map>
                 <entry key="container" value="{{container}}"/>
@@ -95,7 +96,7 @@
                 <entry key="localMessage2" value="{{localMessage2}}"/>
             </map>
         </property>
-    </bean>
+    </bean -->
 
 
 </beans>
